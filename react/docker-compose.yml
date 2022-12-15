@@ -1,0 +1,21 @@
+version: "2.2"
+
+services:
+  react:
+    #image: node:latest
+    image: node:18
+    working_dir: /home/node/app
+    user: node
+    environment:
+      - NODE_ENV=dev
+      # - CYPRESS_CACHE_FOLDER="/tmp/cache"
+    volumes:
+      - $PWD:/home/node/app:cached
+      - /home/node/app/.git
+      # Put node_modules folder inside container.
+      # - /home/node/app/node_modules
+    ports:
+      # Default port 3000.
+      - "3000:3000"
+    # By default, build the project for local development:
+    command: npm start
